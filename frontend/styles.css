@@ -1,0 +1,15 @@
+h1{
+    color: brown;
+    font-style: oblique;
+}
+#positive{
+    color: chartreuse;
+    font-weight: bold;
+}
+table{
+    padding-top: 1cm;
+    border-collapse: collapse;
+}
+tr{
+    border: solid;
+}
