@@ -2,10 +2,18 @@ h1{
     color: brown;
     font-style: oblique;
 }
+/* id demonstrator */
 #positive{
     color: chartreuse;
     font-weight: bold;
 }
+/* class demonstrator */
+@media (min-width: 1000px) {
+    .negative{
+        color: red;
+    }    
+}
+
 table{
     padding-top: 1cm;
     border-collapse: collapse;
