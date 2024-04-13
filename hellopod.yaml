@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx-echo
+spec:
+  containers:
+  - image: nginx
+    name: nginx-container
+    volumeMounts:
+    - name: communicator-volume
+      mountPath: /app
+  - image: kicbase/echo-server
+    name: echo-container
+    volumeMounts:
+    - name: communicator-volume
+      mountPath: /app
+  restartPolicy: Always
+  volumes:
+  - name: communicator-volume
+    emptyDir: {}

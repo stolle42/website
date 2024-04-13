@@ -1,0 +1,145 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"v1","kind":"Pod","metadata":{"annotations":{"kubernetes.io/limit-ranger":"LimitRanger plugin set: memory request for container main; memory limit for container main; memory request for container sidecar; memory limit for container sidecar"},"creationTimestamp":"2023-11-11T15:44:27Z","labels":{"run":"newpod"},"name":"doublepod","namespace":"default","resourceVersion":"199067","uid":"e1941069-42d0-493d-bd8b-74e303a32a32"},"spec":{"containers":[{"image":"kicbase/echo-server","imagePullPolicy":"IfNotPresent","name":"main","resources":{"limits":{"memory":"100Mi"},"requests":{"memory":"100Mi"}},"terminationMessagePath":"/dev/termination-log","terminationMessagePolicy":"File","volumeMounts":[{"mountPath":"/var/run/secrets/kubernetes.io/serviceaccount","name":"kube-api-access-cqh7z","readOnly":true}]},{"image":"nginx","imagePullPolicy":"IfNotPresent","name":"sidecar","resources":{"limits":{"memory":"100Mi"},"requests":{"memory":"100Mi"}},"terminationMessagePath":"/dev/termination-log","terminationMessagePolicy":"File","volumeMounts":[{"mountPath":"/var/run/secrets/kubernetes.io/serviceaccount","name":"kube-api-access-cqh7z","readOnly":true}]}],"dnsPolicy":"ClusterFirst","enableServiceLinks":true,"nodeName":"minikube","preemptionPolicy":"PreemptLowerPriority","priority":0,"restartPolicy":"Always","schedulerName":"default-scheduler","securityContext":{},"serviceAccount":"default","serviceAccountName":"default","terminationGracePeriodSeconds":30,"tolerations":[{"effect":"NoExecute","key":"node.kubernetes.io/not-ready","operator":"Exists","tolerationSeconds":300},{"effect":"NoExecute","key":"node.kubernetes.io/unreachable","operator":"Exists","tolerationSeconds":300}],"volumes":[{"name":"kube-api-access-cqh7z","projected":{"defaultMode":420,"sources":[{"serviceAccountToken":{"expirationSeconds":3607,"path":"token"}},{"configMap":{"items":[{"key":"ca.crt","path":"ca.crt"}],"name":"kube-root-ca.crt"}},{"downwardAPI":{"items":[{"fieldRef":{"apiVersion":"v1","fieldPath":"metadata.namespace"},"path":"namespace"}]}}]}}]},"status":{"conditions":[{"lastProbeTime":null,"lastTransitionTime":"2023-11-11T15:44:27Z","status":"True","type":"Initialized"},{"lastProbeTime":null,"lastTransitionTime":"2023-11-11T15:44:27Z","message":"containers with unready status: [sidecar]","reason":"ContainersNotReady","status":"False","type":"Ready"},{"lastProbeTime":null,"lastTransitionTime":"2023-11-11T15:44:27Z","message":"containers with unready status: [sidecar]","reason":"ContainersNotReady","status":"False","type":"ContainersReady"},{"lastProbeTime":null,"lastTransitionTime":"2023-11-11T15:44:27Z","status":"True","type":"PodScheduled"}],"containerStatuses":[{"containerID":"docker://2a4f60e95873ae7270fa472cc28957f891f5c260955b2fa4949a05809eb34a36","image":"kicbase/echo-server:1.0","imageID":"docker-pullable://kicbase/echo-server@sha256:127ac38a2bb9537b7f252addff209ea6801edcac8a92c8b1104dacd66a583ed6","lastState":{},"name":"main","ready":true,"restartCount":0,"started":true,"state":{"running":{"startedAt":"2023-11-11T15:44:32Z"}}},{"image":"kicbase/echo-server","imageID":"","lastState":{},"name":"sidecar","ready":false,"restartCount":0,"started":false,"state":{"waiting":{"message":"rpc error: code = Unknown desc = Error response from daemon: Get \"https://registry-1.docker.io/v2/\": EOF","reason":"ErrImagePull"}}}],"hostIP":"192.168.49.2","phase":"Pending","podIP":"10.244.0.202","podIPs":[{"ip":"10.244.0.202"}],"qosClass":"Burstable","startTime":"2023-11-11T15:44:27Z"}}
+    kubernetes.io/limit-ranger: 'LimitRanger plugin set: memory request for container
+      main; memory limit for container main; memory request for container sidecar;
+      memory limit for container sidecar'
+  creationTimestamp: "2023-11-11T15:56:32Z"
+  labels:
+    run: newpod
+  name: doublepod
+  namespace: default
+  resourceVersion: "290041"
+  uid: a1d64bcf-ab30-45b8-96d7-6d055c0e1d9e
+spec:
+  containers:
+  - image: kicbase/echo-server
+    imagePullPolicy: IfNotPresent
+    name: main
+    resources:
+      limits:
+        memory: 100Mi
+      requests:
+        memory: 100Mi
+    terminationMessagePath: /dev/termination-log
+    terminationMessagePolicy: File
+    volumeMounts:
+    - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      name: kube-api-access-cqh7z
+      readOnly: true
+  - image: nginx
+    imagePullPolicy: IfNotPresent
+    name: sidecar
+    resources:
+      limits:
+        memory: 100Mi
+      requests:
+        memory: 100Mi
+    terminationMessagePath: /dev/termination-log
+    terminationMessagePolicy: File
+    volumeMounts:
+    - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      name: kube-api-access-cqh7z
+      readOnly: true
+  dnsPolicy: ClusterFirst
+  enableServiceLinks: true
+  nodeName: minikube
+  preemptionPolicy: PreemptLowerPriority
+  priority: 0
+  restartPolicy: Always
+  schedulerName: default-scheduler
+  securityContext: {}
+  serviceAccount: default
+  serviceAccountName: default
+  terminationGracePeriodSeconds: 30
+  tolerations:
+  - effect: NoExecute
+    key: node.kubernetes.io/not-ready
+    operator: Exists
+    tolerationSeconds: 300
+  - effect: NoExecute
+    key: node.kubernetes.io/unreachable
+    operator: Exists
+    tolerationSeconds: 300
+  volumes:
+  - name: kube-api-access-cqh7z
+    projected:
+      defaultMode: 420
+      sources:
+      - serviceAccountToken:
+          expirationSeconds: 3607
+          path: token
+      - configMap:
+          items:
+          - key: ca.crt
+            path: ca.crt
+          name: kube-root-ca.crt
+      - downwardAPI:
+          items:
+          - fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.namespace
+            path: namespace
+status:
+  conditions:
+  - lastProbeTime: null
+    lastTransitionTime: "2023-11-11T15:56:32Z"
+    status: "True"
+    type: Initialized
+  - lastProbeTime: null
+    lastTransitionTime: "2024-04-12T16:33:06Z"
+    status: "True"
+    type: Ready
+  - lastProbeTime: null
+    lastTransitionTime: "2024-04-12T16:33:06Z"
+    status: "True"
+    type: ContainersReady
+  - lastProbeTime: null
+    lastTransitionTime: "2023-11-11T15:56:32Z"
+    status: "True"
+    type: PodScheduled
+  containerStatuses:
+  - containerID: docker://7b734203ea1169f3376de4ac51db25ef6a0aa8dfb36f57ff7ae083fbfd13b23f
+    image: kicbase/echo-server:1.0
+    imageID: docker-pullable://kicbase/echo-server@sha256:127ac38a2bb9537b7f252addff209ea6801edcac8a92c8b1104dacd66a583ed6
+    lastState:
+      terminated:
+        containerID: docker://824b5959cb1b2fe5532528af8486fa5b1abda7dc60d98deab10c124f36b32a14
+        exitCode: 2
+        finishedAt: "2024-04-11T18:57:40Z"
+        reason: Error
+        startedAt: "2024-04-11T15:14:43Z"
+    name: main
+    ready: true
+    restartCount: 12
+    started: true
+    state:
+      running:
+        startedAt: "2024-04-12T16:33:05Z"
+  - containerID: docker://32bf88a221c7075b15dee18381f6b29cba74d61f7839c5f57f510c6889fa01b9
+    image: nginx:latest
+    imageID: docker-pullable://nginx@sha256:b72dad1d013c5e4c4fb817f884aa163287bf147482562f12c56368ca1c2a3705
+    lastState:
+      terminated:
+        containerID: docker://7dd8c9ed081031d8e8544f16b8981f97ad7602737b75cb74501447171ab5ea37
+        exitCode: 0
+        finishedAt: "2024-04-11T18:57:40Z"
+        reason: Completed
+        startedAt: "2024-04-11T15:14:43Z"
+    name: sidecar
+    ready: true
+    restartCount: 12
+    started: true
+    state:
+      running:
+        startedAt: "2024-04-12T16:33:06Z"
+  hostIP: 192.168.49.2
+  phase: Running
+  podIP: 10.244.1.134
+  podIPs:
+  - ip: 10.244.1.134
+  qosClass: Burstable
+  startTime: "2023-11-11T15:56:32Z"
